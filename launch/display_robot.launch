@@ -1,0 +1,5 @@
+<launch>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d '$(find xiaoche_remote)/rviz/display_robot.rviz'" required="true" />
+
+</launch>

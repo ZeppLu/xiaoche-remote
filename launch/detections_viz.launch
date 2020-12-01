@@ -1,0 +1,21 @@
+<launch>
+
+
+  <node name="detections_viz" pkg="xiaoche_remote" type="detections_viz" output="screen">
+    <remap from="/detections_viz/image_in/compressed" to="/camera/color/image_raw/compressed"/>
+    <remap from="/detections_viz/detections" to="/detectnet_node/detections"/>
+    <remap from="/detections_viz/vision_info" to="/detectnet_node/vision_info"/>
+
+	<param name="image_transport" value="compressed"/>
+
+    <param name="line_thickness" value="2"/>
+    <param name="font_thickness" value="1"/>
+    <param name="font_scale" value="0.5"/>
+    <param name="detect_delay_lb_ms" value="0"/>
+    <param name="age_penalty" value="1.0"/>
+  </node>
+
+
+  <node name="viewer" pkg="rqt_image_view" type="rqt_image_view" args="/detections_viz/image_out" output="screen" required="true"/>
+
+</launch>
