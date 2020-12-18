@@ -75,8 +75,11 @@ void render_and_publish(
 		int line_thickness, int font_thickness, double font_scale
 		) {
 
-	ros::Duration delay = p_detections->header.stamp - p_image->header.stamp;
-	ROS_DEBUG_STREAM("received a pair, delay: " << delay);
+	ROS_INFO_THROTTLE(5.0,
+			"image delay: %fs; detections delay: %fs",
+			(ros::Time::now() - p_image->header.stamp).toSec(),
+			(ros::Time::now() - p_detections->header.stamp).toSec()
+	);
 
 	// initialize cv_bridge pointer
 	cv_bridge::CvImagePtr cv_ptr;
