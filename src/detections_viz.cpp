@@ -176,7 +176,7 @@ int main(int argc, char** argv) {
 	// see http://wiki.ros.org/message_filters/ApproximateTime for details
 	typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, vision_msgs::Detection2DArray> SyncPol;
 	// queue_size = 10
-	message_filters::Synchronizer<SyncPol> sync(SyncPol(3), image_sub, detect_sub);
+	message_filters::Synchronizer<SyncPol> sync(SyncPol(10), image_sub, detect_sub);
 	// 1s == 1000ms
 	sync.setInterMessageLowerBound(ros::Duration(detect_delay_lb_ms / 1000.0));
 	sync.setAgePenalty(age_penalty);
